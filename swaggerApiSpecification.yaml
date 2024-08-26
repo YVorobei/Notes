@@ -1,0 +1,159 @@
+openapi: 3.0.0
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/casual2008/testNotes/1.0.0
+info:
+  version: '1.0'
+  title: notes-api
+  description: The API Notes service
+paths:
+
+  /notes/create:
+    post:
+      tags:
+        - Create Note
+      operationId: createNote
+      responses:
+        '200':
+          description: successfully create note
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NoteRegistrationInfo'
+
+  /notes/search:
+    get:
+      tags:
+      - Get note by id
+      description: get note by id
+      operationId: getById
+      parameters:
+        - in: query
+          name: noteId
+          description: note id
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NoteResponseById'
+
+  /notes/getall:
+    get:
+      tags:
+        - Get All Notes
+      description: get all note
+      operationId: getNotes
+      responses:
+        '200':
+          description: response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotesResponse'
+
+  /notes/update:
+    put:
+      tags:
+        - Update Note
+      operationId: updateNote
+      parameters:
+        - in: query
+          name: noteId
+          description: note id
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NoteResponseById'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NoteRegistrationInfo'
+
+  /notes/delete:
+    delete:
+      tags:
+        - Delete Note
+      operationId: deleteNote
+      parameters:
+        - in: query
+          name: noteId
+          description: note id
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NoteResponseById'
+
+x-swagger-router-controller: Environment
+components:
+  schemas:
+    ApiResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+          example: everything is ok
+
+    NoteRegistrationInfo:
+      type: object
+      properties:
+        title:
+          type: string
+          format: title
+          example: 'TestNoteTitle'
+        message:
+          type: string
+          format: message
+          example: test note description
+    NoteResponseById:
+      type: object
+      properties:
+        id:
+          type: number
+          format: long
+          example: 777
+        title:
+          type: string
+          format: title
+          example: 'TestNoteTitle'
+        message:
+          type: string
+          format: message
+          example: test note description
+        date_creation:
+          type: string
+          format: date-time
+          example: 22-01-2024 23:02:52
+        date_update:
+          type: string
+          format: date-time
+          example: 22-01-2024 23:22:22
+    NotesResponse:
+      type: object
+      properties:
+        notes:
+          type: array
+          items:
+            $ref: '#/components/schemas/NoteResponseById'
