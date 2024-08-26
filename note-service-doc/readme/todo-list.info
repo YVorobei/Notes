@@ -1,0 +1,7 @@
+Todo list
+---------
+ Component diagram https://app.diagrams.net/
+ Open api specification https://swagger.io/specification/
+ Generate controller based on specification
+Implement create note flow
+Implement getAll notes flow

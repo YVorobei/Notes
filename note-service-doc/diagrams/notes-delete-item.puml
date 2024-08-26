@@ -1,0 +1,12 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+actor "Web Client" as CL
+participant "Notes Service" as NS
+Database  "BD"
+queue "Kafka"
+
+CL -> NS: delete note
+NS -> BD: delete note
+BD -> Kafka: track event
+@enduml

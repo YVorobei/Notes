@@ -1,0 +1,169 @@
+= Notes Service SDD
+:toc:
+:toclevels: 4
+
+[NOTE]
+
+== Introduction
+This service is responsible for creating notes.
+
+== Component Diagrams
+
+image::../diagrams/notes-component-diagram.svg[format=svg,opts=inline]
+
+=== Sequence Diagrams
+
+==== Create note via API:
+[plantuml, create-notes, svg, 100%]
+....
+include::../diagrams/notes-create-item.puml[]
+....
+
+==== Search note by id via API:
+[plantuml, search-notes, svg, 100%]
+....
+include::../diagrams/notes-search-item.puml[]
+....
+
+==== Get all notes via API:
+[plantuml, get-all-notes, svg, 100%]
+....
+include::../diagrams/notes-get-all-item.puml[]
+....
+
+==== Update note via API:
+[plantuml, update-notes, svg, 100%]
+....
+include::../diagrams/notes-update-item.puml[]
+....
+
+==== Delete note via API:
+[plantuml, delete-notes, svg, 100%]
+....
+include::../diagrams/notes-delete-item.puml[]
+....
+
+== API
+
+==== Create note
+[source,http]
+----
+POST /notes/create
+----
+[source,json]
+----
+    {
+      "title": "title",
+      "message": "msg"
+    }
+----
+[options="header"]
+|===
+| Response Code | Description
+| 200           | Successful response.
+|===
+
+==== Search note by id
+[source,http]
+----
+GET /notes/searsch/{id}
+----
+[source,json]
+[options="header"]
+
+[source,json]
+----
+{
+      "id": 1,
+      "title": "title_1",
+      "message": "msg",
+      "date_creation": "",
+      "date_update": ""
+}
+----
+
+|===
+| Response Code | Description
+| 200           | Successful response, return note.
+| 404           | Unable to find note.
+|===
+
+==== Get all notes
+[source,http]
+----
+GET /notes/getall
+----
+[source,json]
+
+[options="header"]
+|===
+| Response Code | Description
+| 200           | Successful response, list of notes returned.
+|===
+Response body:
+
+[source,json]
+----
+{
+  "notes": [
+    {
+      "id": 1,
+      "title": "title_1",
+      "message": "msg",
+      "date_creation": "",
+      "date_update": ""
+    },
+    {
+      "id": 2,
+      "title": "title_2",
+      "message": "msg2",
+      "date_creation": "",
+      "date_update": ""
+    }
+  ]
+}
+----
+
+==== Update note
+[source,http]
+----
+PUT /notes/update/{id}
+----
+[source,json]
+----
+    {
+      "title": "title",
+      "message": "msg"
+    }
+----
+[options="header"]
+|===
+| Response Code | Description
+| 200           | Successful response.
+| 404           | Unable to find note.
+|===
+
+Response body:
+
+[source,json]
+----
+{
+   "id": 1,
+   "title": "title_1",
+   "message": "msg",
+   "date_creation": "",
+   "date_update": ""
+}
+----
+
+==== Delete note by id
+[source,http]
+----
+DELETE /notes/delete/{id}
+----
+
+|===
+| Response Code | Description
+| 200           | Successful response
+|===
+
