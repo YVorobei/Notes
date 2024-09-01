@@ -1,17 +1,17 @@
 package org.notes.dao;
 
-import org.notes.entity.Note;
+import org.notes.dto.NoteResponseById;
 
 import java.util.List;
 
 public interface NoteDAO {
-    void save(Note theNote);
+    void save(NoteResponseById theNote);
 
-    Note findById(Integer id);
+    NoteResponseById findById(Integer id);
 
-    List<Note> findAll();
+    List<NoteResponseById> findAll();
 
-    void update(Note theNote);
+    void update(Integer noteId, NoteResponseById theNote);
 
     void delete(Integer id);
 }

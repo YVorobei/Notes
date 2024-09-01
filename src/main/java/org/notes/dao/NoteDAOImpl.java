@@ -1,6 +1,6 @@
 package org.notes.dao;
 
-import org.notes.entity.Note;
+import org.notes.dto.NoteResponseById;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,32 +20,44 @@ public class NoteDAOImpl implements NoteDAO {
     }
 
     @Override
-    @Transactional
-    public void save(Note note) {
-        entityManager.persist(note);
+    @Transactional// move to service layer
+    public void save(NoteResponseById theNote) {
+        entityManager.persist(theNote);
     }
 
     @Override
-    public Note findById(Integer id) {
-        return entityManager.find(Note.class, id);
+    public NoteResponseById findById(Integer id) {
+        return entityManager.find(NoteResponseById.class, id);
     }
 
     @Override
-    public List<Note> findAll() {
-        TypedQuery<Note> theQuery = entityManager.createQuery("from Note", Note.class);
+    public List<NoteResponseById> findAll() {
+        TypedQuery<NoteResponseById> theQuery = entityManager.createQuery("from NoteResponseById", NoteResponseById.class);
 
         return theQuery.getResultList();
     }
 
     @Override
-    @Transactional
+    @Transactional //move to service layer
     public void delete(Integer id) {
-        var theNote = entityManager.find(Note.class, id);
+        var theNote = entityManager.find(NoteResponseById.class, id);
+        if (theNote == null) {
+            throw new RuntimeException("Note with id " + id + " not found");
+        }
         entityManager.remove(theNote);
     }
 
     @Override
-    public void update(Note theNote) {
+    @Transactional
+    public void update(Integer id, NoteResponseById theNote) {
+        var targetNote = entityManager.find(NoteResponseById.class, id);
+        if (targetNote == null) {
+            throw new RuntimeException("Note with id " + id + " not found");
+        }
+
+        //todo move logic
+        theNote.setDateCreation(targetNote.getDateCreation());
+
         entityManager.merge(theNote);
     }
 }
