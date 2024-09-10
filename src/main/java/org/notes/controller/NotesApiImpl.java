@@ -8,10 +8,10 @@ package org.notes.controller;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.notes.dao.NoteDAO;
 import org.notes.dto.NoteRegistrationInfo;
 import org.notes.dto.NoteResponseById;
 import org.notes.dto.NotesResponse;
-import org.notes.service.NoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Generated;
 import javax.validation.Valid;
+import java.time.OffsetDateTime;
 import java.util.List;
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-08-26T18:46:30.180385+03:00[Europe/Kiev]")
@@ -32,19 +33,16 @@ import java.util.List;
 @RequestMapping("${openapi.user.base-path:/api}")
 public class NotesApiImpl implements NotesApi {
 
-    private NoteService noteService;
-
     @Autowired
-    public NotesApiImpl(NoteService noteService) {
-        this.noteService = noteService;
-    }
+    private NoteDAO noteDAO;
 
     @Override
     public ResponseEntity<NoteResponseById> getById(
             @Parameter(name = "noteId", description = "note id", schema = @Schema(description = ""))
             @Valid @RequestParam(value = "noteId", required = false) Integer noteId) {
 
-        var note = noteService.getNoteById(noteId);
+        //var note = noteService.getNoteById(noteId);
+        var note = noteDAO.findById(noteId);
 
         return new ResponseEntity<>(note, HttpStatus.OK);
     }
@@ -54,38 +52,69 @@ public class NotesApiImpl implements NotesApi {
             @Parameter(name = "NoteRegistrationInfo", description = "", schema = @Schema(description = ""))
             @Valid @RequestBody(required = false) NoteRegistrationInfo noteRegistrationInfo) {
 
-        var note = noteService.saveNote(noteRegistrationInfo);
+        OffsetDateTime currentDate = OffsetDateTime.now();
 
+        //NoteResponseById body = NoteResponseByIdBuilder.builder().build()
+        //        .id(0)
+        //        .title(noteRegistrationInfo.getTitle())
+        //        .message(noteRegistrationInfo.getMessage())
+        //        .dateCreation(currentDate)
+        //        .dateUpdate(currentDate);
+
+        NoteResponseById note = new NoteResponseById();
+        note.setId(0);
+        note.title(noteRegistrationInfo.getTitle());
+        note.message(noteRegistrationInfo.getMessage());
+        note.dateCreation(currentDate);
+        note.dateUpdate(currentDate);
+
+        noteDAO.save(note);
+
+        //return new ResponseEntity<>(HttpStatus.OK);
         return new ResponseEntity<>(note, HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<NotesResponse> getNotes() {
-        List<NoteResponseById> notes = noteService.getAllNotes();
+        //List<NoteResponseById> notes = noteService.getAllNotes();
 
         //todo fix convertion
+        var notes = noteDAO.findAll();
         NotesResponse notesResponse = new NotesResponse();
         notesResponse.setNotes(notes);
 
+
         return new ResponseEntity<>(notesResponse, HttpStatus.OK);
+
+        //return new ResponseEntity<>(notesResponse, HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<NoteResponseById> deleteNote(
             @Parameter(name = "noteId", description = "note id")
             @Valid @RequestParam(value = "noteId", required = true) Integer noteId) {
-        var removedNote = noteService.removeNoteById(noteId);
+        //var removedNote = noteService.removeNoteById(noteId);
 
-        return new ResponseEntity<>(removedNote, HttpStatus.OK);
+        noteDAO.delete(noteId);
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @Override
+    //todo need to fix
     public ResponseEntity<NoteResponseById> updateNote(
             @Parameter(name = "noteId") @Valid @RequestParam(value = "noteId", required = true) Integer noteId,
             @Parameter(name = "NoteRegistrationInfo") @Valid @RequestBody NoteRegistrationInfo noteRegistrationInfo) {
 
-        var updatedNote = noteService.updatedNoteById(noteId, noteRegistrationInfo);
+        //var updatedNote = noteService.updatedNoteById(noteId, noteRegistrationInfo);
+        NoteResponseById note = new NoteResponseById();
+        note.setId(noteId);
+        note.title(noteRegistrationInfo.getTitle());
+        note.message(noteRegistrationInfo.getMessage());
+        //note.dateCreation(currentDate);
+        note.dateUpdate(OffsetDateTime.now());
 
-        return new ResponseEntity<>(updatedNote, HttpStatus.OK);
+        noteDAO.update(noteId, note);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

@@ -8,6 +8,10 @@ import java.time.OffsetDateTime;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.time.OffsetDateTime;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -19,24 +23,31 @@ import javax.annotation.Generated;
 /**
  * NoteResponseById
  */
-
+@Entity
+@Table(name = "notes")
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-08-26T20:58:07.952931800+02:00[Europe/Warsaw]")
 public class NoteResponseById   {
 
+  @Id
   @JsonProperty("id")
+  @Column(name="id")
   private Integer id;
 
   @JsonProperty("title")
+  @Column(name="title")
   private String title;
 
   @JsonProperty("message")
+  @Column(name="message")
   private String message;
 
   @JsonProperty("date_creation")
+  @Column(name="date_creation")
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
   private OffsetDateTime dateCreation;
 
   @JsonProperty("date_update")
+  @Column(name="date_update")
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
   private OffsetDateTime dateUpdate;
 
