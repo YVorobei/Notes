@@ -20,7 +20,7 @@ public class NoteDAOImpl implements NoteDAO {
     }
 
     @Override
-    @Transactional// move to service layer
+    //@Transactional// move to service layer
     public void save(NoteResponseById theNote) {
         entityManager.persist(theNote);
     }
@@ -38,7 +38,7 @@ public class NoteDAOImpl implements NoteDAO {
     }
 
     @Override
-    @Transactional //move to service layer
+    //@Transactional //move to service layer
     public void delete(Integer id) {
         var theNote = entityManager.find(NoteResponseById.class, id);
         if (theNote == null) {
@@ -48,7 +48,7 @@ public class NoteDAOImpl implements NoteDAO {
     }
 
     @Override
-    @Transactional
+    //@Transactional
     public void update(Integer id, NoteResponseById theNote) {
         var targetNote = entityManager.find(NoteResponseById.class, id);
         if (targetNote == null) {
