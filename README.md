@@ -51,7 +51,7 @@
 <h4 id="_create_note_via_api">Create note via API:</h4>
 <div class="imageblock">
 <div class="content">
-<img src="create-notes.svg" alt="create notes" width="341" height="280">
+<img src="https://raw.githubusercontent.com/YVorobei/Notes/main/note-service-doc/readme/create-notes.svg" alt="create notes" width="341" height="280">
 </div>
 </div>
 </div>
@@ -59,7 +59,7 @@
 <h4 id="_search_note_by_id_via_api">Search note by id via API:</h4>
 <div class="imageblock">
 <div class="content">
-<img src="search-notes.svg" alt="search notes" width="428" height="343">
+<img src="https://raw.githubusercontent.com/YVorobei/Notes/main/note-service-doc/readme/search-notes.svg" alt="search notes" width="428" height="343">
 </div>
 </div>
 </div>
@@ -67,7 +67,7 @@
 <h4 id="_get_all_notes_via_api">Get all notes via API:</h4>
 <div class="imageblock">
 <div class="content">
-<img src="get-all-notes.svg" alt="get all notes" width="357" height="343">
+<img src="https://raw.githubusercontent.com/YVorobei/Notes/main/note-service-doc/readme/get-all-notes.svg" alt="get all notes" width="357" height="343">
 </div>
 </div>
 </div>
@@ -75,7 +75,7 @@
 <h4 id="_update_note_via_api">Update note via API:</h4>
 <div class="imageblock">
 <div class="content">
-<img src="update-notes.svg" alt="update notes" width="354" height="343">
+<img src="https://raw.githubusercontent.com/YVorobei/Notes/main/note-service-doc/readme/update-notes.svg" alt="update notes" width="354" height="343">
 </div>
 </div>
 </div>
@@ -83,7 +83,7 @@
 <h4 id="_delete_note_via_api">Delete note via API:</h4>
 <div class="imageblock">
 <div class="content">
-<img src="delete-notes.svg" alt="delete notes" width="350" height="280">
+<img src="https://raw.githubusercontent.com/YVorobei/Notes/main/note-service-doc/readme/delete-notes.svg" alt="delete notes" width="350" height="280">
 </div>
 </div>
 </div>
