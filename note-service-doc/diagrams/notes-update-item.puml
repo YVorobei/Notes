@@ -9,6 +9,4 @@ queue "Kafka"
 CL -> NS: update note
 NS -> BD: update note
 BD -> Kafka: track event
-NS <- BD: note
-CL <- NS: note
 @enduml
