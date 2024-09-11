@@ -31,7 +31,7 @@ import java.util.Optional;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-08-26T20:58:07.952931800+02:00[Europe/Warsaw]")
 @Validated
 @Tag(name = "notes", description = "the notes API")
-public interface NotesApi {
+public interface NotesApiController {
 
     default Optional<NativeWebRequest> getRequest() {
         return Optional.empty();
