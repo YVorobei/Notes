@@ -143,19 +143,6 @@ PUT /notes/update/{id}
 | 404           | Unable to find note.
 |===
 
-Response body:
-
-[source,json]
-----
-{
-   "id": 1,
-   "title": "title_1",
-   "message": "msg",
-   "date_creation": "",
-   "date_update": ""
-}
-----
-
 ==== Delete note by id
 [source,http]
 ----
