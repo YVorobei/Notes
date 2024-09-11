@@ -11,7 +11,7 @@
 <div id="header">
 <h1>Notes Service SDD</h1>
 <div id="toc" class="toc">
-<div id="toctitle">Table of Contents</div>
+<img src="https://raw.githubusercontent.com/YVorobei/Notes/main/note-service-doc/diagrams/notes-component-diagram.svg" alt="notes component diagram" width="600">
 <ul class="sectlevel1">
 <li><a href="#_introduction">Introduction</a>
 <ul class="sectlevel2">
