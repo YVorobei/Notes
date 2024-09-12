@@ -12,8 +12,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.notes.dto.NoteRegistrationInfo;
-import org.notes.dto.NoteResponseById;
-import org.notes.dto.NotesResponse;
+import org.notes.dto.Note;
+import org.notes.dto.AllNotes;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -47,7 +47,7 @@ public interface NotesApiController {
         operationId = "createNote",
         tags = { "Create Note" },
         responses = {
-            @ApiResponse(responseCode = "200", description = "response", content = @Content(mediaType = "application/json", schema = @Schema(implementation =  NoteResponseById.class)))
+            @ApiResponse(responseCode = "200", description = "response", content = @Content(mediaType = "application/json", schema = @Schema(implementation =  Note.class)))
         }
     )
     @RequestMapping(
@@ -56,7 +56,7 @@ public interface NotesApiController {
         produces = { "application/json" },
         consumes = { "application/json" }
     )
-    default ResponseEntity<NoteResponseById> createNote(
+    default ResponseEntity<Note> createNote(
         @Parameter(name = "NoteRegistrationInfo", description = "", schema = @Schema(description = "")) @Valid @RequestBody(required = false) NoteRegistrationInfo noteRegistrationInfo
     ) {
         getRequest().ifPresent(request -> {
@@ -83,7 +83,7 @@ public interface NotesApiController {
         operationId = "deleteNote",
         tags = { "Delete Note" },
         responses = {
-            @ApiResponse(responseCode = "200", description = "response", content = @Content(mediaType = "application/json", schema = @Schema(implementation =  NoteResponseById.class)))
+            @ApiResponse(responseCode = "200", description = "response", content = @Content(mediaType = "application/json", schema = @Schema(implementation =  Note.class)))
         }
     )
     @RequestMapping(
@@ -91,7 +91,7 @@ public interface NotesApiController {
         value = "/notes/delete",
         produces = { "application/json" }
     )
-    default ResponseEntity<NoteResponseById> deleteNote(
+    default ResponseEntity<Note> deleteNote(
         @Parameter(name = "noteId", description = "note id", schema = @Schema(description = "")) @Valid @RequestParam(value = "noteId", required = false) Integer noteId
     ) {
         getRequest().ifPresent(request -> {
@@ -119,7 +119,7 @@ public interface NotesApiController {
         operationId = "getById",
         tags = { "Get note by id" },
         responses = {
-            @ApiResponse(responseCode = "200", description = "response", content = @Content(mediaType = "application/json", schema = @Schema(implementation =  NoteResponseById.class)))
+            @ApiResponse(responseCode = "200", description = "response", content = @Content(mediaType = "application/json", schema = @Schema(implementation =  Note.class)))
         }
     )
     @RequestMapping(
@@ -127,7 +127,7 @@ public interface NotesApiController {
         value = "/notes/search",
         produces = { "application/json" }
     )
-    default ResponseEntity<NoteResponseById> getById(
+    default ResponseEntity<Note> getById(
         @Parameter(name = "noteId", description = "note id", schema = @Schema(description = "")) @Valid @RequestParam(value = "noteId", required = false) Integer noteId
     ) {
         getRequest().ifPresent(request -> {
@@ -154,7 +154,7 @@ public interface NotesApiController {
         operationId = "getNotes",
         tags = { "Get All Notes" },
         responses = {
-            @ApiResponse(responseCode = "200", description = "response", content = @Content(mediaType = "application/json", schema = @Schema(implementation =  NotesResponse.class)))
+            @ApiResponse(responseCode = "200", description = "response", content = @Content(mediaType = "application/json", schema = @Schema(implementation =  AllNotes.class)))
         }
     )
     @RequestMapping(
@@ -162,7 +162,7 @@ public interface NotesApiController {
         value = "/notes/getall",
         produces = { "application/json" }
     )
-    default ResponseEntity<NotesResponse> getNotes(
+    default ResponseEntity<AllNotes> getNotes(
         
     ) {
         getRequest().ifPresent(request -> {
@@ -190,7 +190,7 @@ public interface NotesApiController {
         operationId = "updateNote",
         tags = { "Update Note" },
         responses = {
-            @ApiResponse(responseCode = "200", description = "response", content = @Content(mediaType = "application/json", schema = @Schema(implementation =  NoteResponseById.class)))
+            @ApiResponse(responseCode = "200", description = "response", content = @Content(mediaType = "application/json", schema = @Schema(implementation =  Note.class)))
         }
     )
     @RequestMapping(
@@ -199,7 +199,7 @@ public interface NotesApiController {
         produces = { "application/json" },
         consumes = { "application/json" }
     )
-    default ResponseEntity<NoteResponseById> updateNote(
+    default ResponseEntity<Note> updateNote(
         @Parameter(name = "noteId", description = "note id", schema = @Schema(description = "")) @Valid @RequestParam(value = "noteId", required = false) Integer noteId,
         @Parameter(name = "NoteRegistrationInfo", description = "", schema = @Schema(description = "")) @Valid @RequestBody(required = false) NoteRegistrationInfo noteRegistrationInfo
     ) {

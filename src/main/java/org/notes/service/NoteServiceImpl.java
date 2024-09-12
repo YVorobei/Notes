@@ -1,7 +1,7 @@
 package org.notes.service;
 
 import org.notes.dao.NoteDAO;
-import org.notes.dto.NoteResponseById;
+import org.notes.dto.Note;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,23 +20,23 @@ public class NoteServiceImpl implements NoteService {
 
     @Transactional
     @Override
-    public void save(NoteResponseById theNote) {
+    public void save(Note theNote) {
         noteDAO.save(theNote);
     }
 
     @Override
-    public NoteResponseById findById(Integer id) {
+    public Note findById(Integer id) {
         return noteDAO.findById(id);
     }
 
     @Override
-    public List<NoteResponseById> findAll() {
+    public List<Note> findAll() {
         return noteDAO.findAll();
     }
 
     @Transactional
     @Override
-    public void update(Integer noteId, NoteResponseById theNote) {
+    public void update(Integer noteId, Note theNote) {
         noteDAO.update(noteId, theNote);
     }
 

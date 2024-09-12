@@ -5,8 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.notes.controller.NotesApiControllerImpl;
 import org.notes.dto.NoteRegistrationInfo;
-import org.notes.dto.NoteResponseById;
-import org.notes.dto.NotesResponse;
+import org.notes.dto.Note;
+import org.notes.dto.AllNotes;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -36,10 +36,10 @@ class NotesApiServiceImplTest {
 
     @Test
     void shouldSearchNoteByIdWhenNoteGetByIdIsCalled() {
-        NoteResponseById note = new NoteResponseById();
+        Note note = new Note();
         when(noteService.findById(anyInt())).thenReturn(note);
 
-        ResponseEntity<NoteResponseById> response = notesApiController.getById(1);
+        ResponseEntity<Note> response = notesApiController.getById(1);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(note, response.getBody());
@@ -52,31 +52,33 @@ class NotesApiServiceImplTest {
         noteRegistrationInfo.setTitle("Test Title");
         noteRegistrationInfo.setMessage("Test Message");
 
-        NoteResponseById note = new NoteResponseById();
+        Note note = new Note();
         note.setId(0);
         note.setTitle(noteRegistrationInfo.getTitle());
         note.setMessage(noteRegistrationInfo.getMessage());
         note.setDateCreation(OffsetDateTime.now());
         note.setDateUpdate(OffsetDateTime.now());
 
-        doNothing().when(noteService).save(any(NoteResponseById.class));
+        doNothing().when(noteService).save(any(Note.class));
 
-        ResponseEntity<NoteResponseById> response = notesApiController.createNote(noteRegistrationInfo);
+        ResponseEntity<Note> response = notesApiController.createNote(noteRegistrationInfo);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        verify(noteService, times(1)).save(any(NoteResponseById.class));
+        verify(noteService, times(1)).save(any(Note.class));
     }
 
     @Test
     void shouldSearchAllNotesWhenGetNotesIsCalled() {
-        NotesResponse notesResponse = new NotesResponse();
-        notesResponse.setNotes(Collections.emptyList());
-        when(noteService.findAll()).thenReturn(notesResponse.getNotes());
+        AllNotes allNotes = new AllNotes();
+        Note note = new Note();
 
-        ResponseEntity<NotesResponse> response = notesApiController.getNotes();
+        allNotes.setNotes(Collections.emptyList());
+        when(noteService.findAll()).thenReturn(allNotes.getNotes());
+
+        ResponseEntity<AllNotes> response = notesApiController.getNotes();
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(notesResponse.getNotes(), response.getBody().getNotes());
+        assertEquals(allNotes.getNotes(), response.getBody().getNotes());
         verify(noteService, times(1)).findAll();
     }
 
@@ -84,7 +86,7 @@ class NotesApiServiceImplTest {
     void shouldDeleteNoteWhenDeleteNoteIsCalled() {
         doNothing().when(noteService).delete(anyInt());
 
-        ResponseEntity<NoteResponseById> response = notesApiController.deleteNote(1);
+        ResponseEntity<Note> response = notesApiController.deleteNote(1);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         verify(noteService, times(1)).delete(anyInt());
@@ -96,17 +98,17 @@ class NotesApiServiceImplTest {
         noteRegistrationInfo.setTitle("Updated Title");
         noteRegistrationInfo.setMessage("Updated Message");
 
-        NoteResponseById note = new NoteResponseById();
+        Note note = new Note();
         note.setId(1);
         note.setTitle(noteRegistrationInfo.getTitle());
         note.setMessage(noteRegistrationInfo.getMessage());
         note.setDateUpdate(OffsetDateTime.now());
 
-        doNothing().when(noteService).update(anyInt(), any(NoteResponseById.class));
+        doNothing().when(noteService).update(anyInt(), any(Note.class));
 
-        ResponseEntity<NoteResponseById> response = notesApiController.updateNote(1, noteRegistrationInfo);
+        ResponseEntity<Note> response = notesApiController.updateNote(1, noteRegistrationInfo);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        verify(noteService, times(1)).update(anyInt(), any(NoteResponseById.class));
+        verify(noteService, times(1)).update(anyInt(), any(Note.class));
     }
 }
