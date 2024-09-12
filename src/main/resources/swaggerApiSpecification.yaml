@@ -25,7 +25,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NoteResponseById'
+                $ref: '#/components/schemas/Note'
 
   /notes/search:
     get:
@@ -46,7 +46,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NoteResponseById'
+                $ref: '#/components/schemas/Note'
 
   /notes/getall:
     get:
@@ -60,7 +60,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NotesResponse'
+                $ref: '#/components/schemas/ListOfNotes'
 
   /notes/update:
     put:
@@ -80,7 +80,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NoteResponseById'
+                $ref: '#/components/schemas/Note'
       requestBody:
         content:
           application/json:
@@ -105,7 +105,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NoteResponseById'
+                $ref: '#/components/schemas/Note'
 
 x-swagger-router-controller: Environment
 components:
@@ -131,7 +131,7 @@ components:
           type: string
           format: message
           example: test note description
-    NoteResponseById:
+    Note:
       type: object
       properties:
         id:
@@ -154,10 +154,10 @@ components:
           type: string
           format: date-time
           example: 22-01-2024 23:22:22
-    NotesResponse:
+    ListOfNotes:
       type: object
       properties:
         notes:
           type: array
           items:
-            $ref: '#/components/schemas/NoteResponseById'
+            $ref: '#/components/schemas/Note'

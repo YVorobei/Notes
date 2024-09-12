@@ -1,20 +1,15 @@
 package org.notes.dto;
 
-import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
+
 import java.util.ArrayList;
 import java.util.List;
-import org.notes.dto.NoteResponseById;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.time.OffsetDateTime;
 import javax.validation.Valid;
-import javax.validation.constraints.*;
+
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
-import java.util.*;
 import javax.annotation.Generated;
 
 /**
@@ -22,18 +17,18 @@ import javax.annotation.Generated;
  */
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-08-26T20:58:07.952931800+02:00[Europe/Warsaw]")
-public class NotesResponse   {
+public class ListOfNotes {
 
   @JsonProperty("notes")
   @Valid
-  private List<NoteResponseById> notes = null;
+  private List<Note> notes = null;
 
-  public NotesResponse notes(List<NoteResponseById> notes) {
+  public ListOfNotes notes(List<Note> notes) {
     this.notes = notes;
     return this;
   }
 
-  public NotesResponse addNotesItem(NoteResponseById notesItem) {
+  public ListOfNotes addNotesItem(Note notesItem) {
     if (this.notes == null) {
       this.notes = new ArrayList<>();
     }
@@ -47,11 +42,11 @@ public class NotesResponse   {
   */
   @Valid 
   @Schema(name = "notes", required = false)
-  public List<NoteResponseById> getNotes() {
+  public List<Note> getNotes() {
     return notes;
   }
 
-  public void setNotes(List<NoteResponseById> notes) {
+  public void setNotes(List<Note> notes) {
     this.notes = notes;
   }
 
@@ -63,8 +58,8 @@ public class NotesResponse   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    NotesResponse notesResponse = (NotesResponse) o;
-    return Objects.equals(this.notes, notesResponse.notes);
+    ListOfNotes listOfNotes = (ListOfNotes) o;
+    return Objects.equals(this.notes, listOfNotes.notes);
   }
 
   @Override

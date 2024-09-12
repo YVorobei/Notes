@@ -9,8 +9,8 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.notes.dto.NoteRegistrationInfo;
-import org.notes.dto.NoteResponseById;
-import org.notes.dto.NotesResponse;
+import org.notes.dto.Note;
+import org.notes.dto.ListOfNotes;
 import org.notes.service.NoteService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,7 +38,7 @@ public class NotesApiControllerImpl implements NotesApiController {
     }
 
     @Override
-    public ResponseEntity<NoteResponseById> getById(
+    public ResponseEntity<Note> getById(
             @Parameter(name = "noteId", description = "note id", schema = @Schema(description = ""))
             @Valid @RequestParam(value = "noteId", required = false) Integer noteId) {
 
@@ -48,13 +48,13 @@ public class NotesApiControllerImpl implements NotesApiController {
     }
 
     @Override
-    public ResponseEntity<NoteResponseById> createNote(
+    public ResponseEntity<Note> createNote(
             @Parameter(name = "NoteRegistrationInfo", description = "", schema = @Schema(description = ""))
             @Valid @RequestBody(required = false) NoteRegistrationInfo noteRegistrationInfo) {
 
         OffsetDateTime currentDate = OffsetDateTime.now();
 
-        NoteResponseById note = new NoteResponseById();
+        Note note = new Note();
         note.setId(0);
         note.title(noteRegistrationInfo.getTitle());
         note.message(noteRegistrationInfo.getMessage());
@@ -67,16 +67,16 @@ public class NotesApiControllerImpl implements NotesApiController {
     }
 
     @Override
-    public ResponseEntity<NotesResponse> getNotes() {
+    public ResponseEntity<ListOfNotes> getNotes() {
         var notes = noteService.findAll();
-        NotesResponse notesResponse = new NotesResponse();
-        notesResponse.setNotes(notes);
+        ListOfNotes listOfNotes = new ListOfNotes();
+        listOfNotes.setNotes(notes);
 
-        return new ResponseEntity<>(notesResponse, HttpStatus.OK);
+        return new ResponseEntity<>(listOfNotes, HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<NoteResponseById> deleteNote(
+    public ResponseEntity<Note> deleteNote(
             @Parameter(name = "noteId", description = "note id")
             @Valid @RequestParam(value = "noteId", required = true) Integer noteId) {
         noteService.delete(noteId);
@@ -85,11 +85,11 @@ public class NotesApiControllerImpl implements NotesApiController {
     }
 
     @Override
-    public ResponseEntity<NoteResponseById> updateNote(
+    public ResponseEntity<Note> updateNote(
             @Parameter(name = "noteId") @Valid @RequestParam(value = "noteId", required = true) Integer noteId,
             @Parameter(name = "NoteRegistrationInfo") @Valid @RequestBody NoteRegistrationInfo noteRegistrationInfo) {
 
-        NoteResponseById note = new NoteResponseById();
+        Note note = new Note();
         note.setId(noteId);
         note.title(noteRegistrationInfo.getTitle());
         note.message(noteRegistrationInfo.getMessage());

@@ -1,23 +1,20 @@
 package org.notes.dto;
 
-import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
+
 import java.time.OffsetDateTime;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.time.OffsetDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.Valid;
-import javax.validation.constraints.*;
+
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
-import java.util.*;
 import javax.annotation.Generated;
 
 /**
@@ -26,7 +23,7 @@ import javax.annotation.Generated;
 @Entity
 @Table(name = "notes")
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-08-26T20:58:07.952931800+02:00[Europe/Warsaw]")
-public class NoteResponseById   {
+public class Note {
 
   @Id
   @JsonProperty("id")
@@ -51,7 +48,7 @@ public class NoteResponseById   {
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
   private OffsetDateTime dateUpdate;
 
-  public NoteResponseById id(Integer id) {
+  public Note id(Integer id) {
     this.id = id;
     return this;
   }
@@ -70,7 +67,7 @@ public class NoteResponseById   {
     this.id = id;
   }
 
-  public NoteResponseById title(String title) {
+  public Note title(String title) {
     this.title = title;
     return this;
   }
@@ -89,7 +86,7 @@ public class NoteResponseById   {
     this.title = title;
   }
 
-  public NoteResponseById message(String message) {
+  public Note message(String message) {
     this.message = message;
     return this;
   }
@@ -108,7 +105,7 @@ public class NoteResponseById   {
     this.message = message;
   }
 
-  public NoteResponseById dateCreation(OffsetDateTime dateCreation) {
+  public Note dateCreation(OffsetDateTime dateCreation) {
     this.dateCreation = dateCreation;
     return this;
   }
@@ -127,7 +124,7 @@ public class NoteResponseById   {
     this.dateCreation = dateCreation;
   }
 
-  public NoteResponseById dateUpdate(OffsetDateTime dateUpdate) {
+  public Note dateUpdate(OffsetDateTime dateUpdate) {
     this.dateUpdate = dateUpdate;
     return this;
   }
@@ -154,12 +151,12 @@ public class NoteResponseById   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    NoteResponseById noteResponseById = (NoteResponseById) o;
-    return Objects.equals(this.id, noteResponseById.id) &&
-        Objects.equals(this.title, noteResponseById.title) &&
-        Objects.equals(this.message, noteResponseById.message) &&
-        Objects.equals(this.dateCreation, noteResponseById.dateCreation) &&
-        Objects.equals(this.dateUpdate, noteResponseById.dateUpdate);
+    Note note = (Note) o;
+    return Objects.equals(this.id, note.id) &&
+        Objects.equals(this.title, note.title) &&
+        Objects.equals(this.message, note.message) &&
+        Objects.equals(this.dateCreation, note.dateCreation) &&
+        Objects.equals(this.dateUpdate, note.dateUpdate);
   }
 
   @Override

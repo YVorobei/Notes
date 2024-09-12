@@ -1,18 +1,18 @@
 package org.notes.service;
 
-import org.notes.dto.NoteResponseById;
+import org.notes.dto.Note;
 
 import java.util.List;
 
 public interface NoteService {
 
-    void save(NoteResponseById theNote);
+    void save(Note theNote);
 
-    NoteResponseById findById(Integer id);
+    Note findById(Integer id);
 
-    List<NoteResponseById> findAll();
+    List<Note> findAll();
 
-    void update(Integer noteId, NoteResponseById theNote);
+    void update(Integer noteId, Note theNote);
 
     void delete(Integer id);
 
