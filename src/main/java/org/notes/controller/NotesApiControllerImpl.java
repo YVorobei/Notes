@@ -10,7 +10,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.notes.dto.NoteRegistrationInfo;
 import org.notes.dto.Note;
-import org.notes.dto.ListOfNotes;
+import org.notes.dto.AllNotes;
 import org.notes.service.NoteService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -67,12 +67,12 @@ public class NotesApiControllerImpl implements NotesApiController {
     }
 
     @Override
-    public ResponseEntity<ListOfNotes> getNotes() {
+    public ResponseEntity<AllNotes> getNotes() {
         var notes = noteService.findAll();
-        ListOfNotes listOfNotes = new ListOfNotes();
-        listOfNotes.setNotes(notes);
+        AllNotes allNotes = new AllNotes();
+        allNotes.setNotes(notes);
 
-        return new ResponseEntity<>(listOfNotes, HttpStatus.OK);
+        return new ResponseEntity<>(allNotes, HttpStatus.OK);
     }
 
     @Override

@@ -13,7 +13,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.notes.dto.NoteRegistrationInfo;
 import org.notes.dto.Note;
-import org.notes.dto.ListOfNotes;
+import org.notes.dto.AllNotes;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -154,7 +154,7 @@ public interface NotesApiController {
         operationId = "getNotes",
         tags = { "Get All Notes" },
         responses = {
-            @ApiResponse(responseCode = "200", description = "response", content = @Content(mediaType = "application/json", schema = @Schema(implementation =  ListOfNotes.class)))
+            @ApiResponse(responseCode = "200", description = "response", content = @Content(mediaType = "application/json", schema = @Schema(implementation =  AllNotes.class)))
         }
     )
     @RequestMapping(
@@ -162,7 +162,7 @@ public interface NotesApiController {
         value = "/notes/getall",
         produces = { "application/json" }
     )
-    default ResponseEntity<ListOfNotes> getNotes(
+    default ResponseEntity<AllNotes> getNotes(
         
     ) {
         getRequest().ifPresent(request -> {

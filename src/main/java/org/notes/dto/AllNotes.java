@@ -17,18 +17,18 @@ import javax.annotation.Generated;
  */
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-08-26T20:58:07.952931800+02:00[Europe/Warsaw]")
-public class ListOfNotes {
+public class AllNotes {
 
   @JsonProperty("notes")
   @Valid
   private List<Note> notes = null;
 
-  public ListOfNotes notes(List<Note> notes) {
+  public AllNotes notes(List<Note> notes) {
     this.notes = notes;
     return this;
   }
 
-  public ListOfNotes addNotesItem(Note notesItem) {
+  public AllNotes addNotesItem(Note notesItem) {
     if (this.notes == null) {
       this.notes = new ArrayList<>();
     }
@@ -58,8 +58,8 @@ public class ListOfNotes {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ListOfNotes listOfNotes = (ListOfNotes) o;
-    return Objects.equals(this.notes, listOfNotes.notes);
+    AllNotes allNotes = (AllNotes) o;
+    return Objects.equals(this.notes, allNotes.notes);
   }
 
   @Override

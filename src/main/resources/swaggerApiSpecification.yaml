@@ -60,7 +60,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListOfNotes'
+                $ref: '#/components/schemas/AllNotes'
 
   /notes/update:
     put:
@@ -154,7 +154,7 @@ components:
           type: string
           format: date-time
           example: 22-01-2024 23:22:22
-    ListOfNotes:
+    AllNotes:
       type: object
       properties:
         notes:

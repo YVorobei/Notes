@@ -6,7 +6,7 @@ import org.mockito.Mock;
 import org.notes.controller.NotesApiControllerImpl;
 import org.notes.dto.NoteRegistrationInfo;
 import org.notes.dto.Note;
-import org.notes.dto.ListOfNotes;
+import org.notes.dto.AllNotes;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -69,16 +69,16 @@ class NotesApiServiceImplTest {
 
     @Test
     void shouldSearchAllNotesWhenGetNotesIsCalled() {
-        ListOfNotes listOfNotes = new ListOfNotes();
+        AllNotes allNotes = new AllNotes();
         Note note = new Note();
 
-        listOfNotes.setNotes(Collections.emptyList());
-        when(noteService.findAll()).thenReturn(listOfNotes.getNotes());
+        allNotes.setNotes(Collections.emptyList());
+        when(noteService.findAll()).thenReturn(allNotes.getNotes());
 
-        ResponseEntity<ListOfNotes> response = notesApiController.getNotes();
+        ResponseEntity<AllNotes> response = notesApiController.getNotes();
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(listOfNotes.getNotes(), response.getBody().getNotes());
+        assertEquals(allNotes.getNotes(), response.getBody().getNotes());
         verify(noteService, times(1)).findAll();
     }
 
