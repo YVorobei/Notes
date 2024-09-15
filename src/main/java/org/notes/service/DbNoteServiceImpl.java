@@ -1,7 +1,6 @@
-package org.notes.dao;
+package org.notes.service;
 
 import org.notes.dto.Note;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -9,11 +8,11 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
-public class NoteDAOImpl implements NoteDAO {
+public class DbNoteServiceImpl implements NoteService {
 
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
 
-    public NoteDAOImpl(EntityManager entityManager) {
+    public DbNoteServiceImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 

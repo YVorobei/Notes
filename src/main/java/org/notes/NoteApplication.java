@@ -1,6 +1,7 @@
 package org.notes;
 
-import org.notes.dao.NoteDAO;
+import org.notes.service.NoteService;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,9 +14,8 @@ public class NoteApplication {
     }
 
     @Bean
-    public CommandLineRunner commandLineRunner(NoteDAO noteDAO) {
+    public CommandLineRunner commandLineRunner(@Qualifier("noteServiceImpl") NoteService noteService) {
         return runner -> {
-
         };
     }
 }
