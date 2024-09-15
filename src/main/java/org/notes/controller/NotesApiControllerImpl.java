@@ -12,6 +12,7 @@ import org.notes.dto.NoteRegistrationInfo;
 import org.notes.dto.Note;
 import org.notes.dto.AllNotes;
 import org.notes.service.NoteService;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -33,7 +34,7 @@ public class NotesApiControllerImpl implements NotesApiController {
 
     private NoteService noteService;
 
-    public NotesApiControllerImpl(NoteService noteService) {
+    public NotesApiControllerImpl(@Qualifier("noteServiceImpl") NoteService noteService) {
         this.noteService = noteService;
     }
 
