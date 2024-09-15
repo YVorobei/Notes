@@ -13,7 +13,6 @@ public class NoteDAOImpl implements NoteDAO {
 
     private EntityManager entityManager;
 
-    @Autowired
     public NoteDAOImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
