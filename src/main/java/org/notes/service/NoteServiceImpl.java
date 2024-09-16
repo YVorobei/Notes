@@ -18,6 +18,8 @@ public class NoteServiceImpl implements NoteService {
     @Transactional
     @Override
     public void save(Note theNote) {
+        var newestNoteId = getLastNoteId() + 1;
+        theNote.setId(newestNoteId);
         dbNoteService.save(theNote);
     }
 
@@ -41,5 +43,9 @@ public class NoteServiceImpl implements NoteService {
     @Override
     public void delete(Integer id) {
         dbNoteService.delete(id);
+    }
+
+    private Integer getLastNoteId() {
+        return dbNoteService.getLastNote().getId();
     }
 }
