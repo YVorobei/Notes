@@ -8,6 +8,7 @@ package org.notes.controller;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.extern.slf4j.Slf4j;
 import org.notes.dto.NoteRegistrationInfo;
 import org.notes.dto.Note;
 import org.notes.dto.AllNotes;
@@ -25,6 +26,7 @@ import javax.annotation.Generated;
 import javax.validation.Valid;
 import java.time.OffsetDateTime;
 
+@Slf4j
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-08-26T18:46:30.180385+03:00[Europe/Kiev]")
 @Validated
 @Tag(name = "notes", description = "the notes API")
@@ -45,6 +47,7 @@ public class NotesApiControllerImpl implements NotesApiController {
 
         var note = noteService.findById(noteId);
 
+        log.info("Get by note id: {} \n Response: {}", noteId, note);
         return new ResponseEntity<>(note, HttpStatus.OK);
     }
 
@@ -56,14 +59,13 @@ public class NotesApiControllerImpl implements NotesApiController {
         OffsetDateTime currentDate = OffsetDateTime.now();
 
         Note note = new Note();
-        note.setId(0);
         note.title(noteRegistrationInfo.getTitle());
         note.message(noteRegistrationInfo.getMessage());
         note.dateCreation(currentDate);
         note.dateUpdate(currentDate);
 
         noteService.save(note);
-
+        log.info("Create note: {}", note);
         return new ResponseEntity<>(note, HttpStatus.OK);
     }
 
@@ -73,6 +75,7 @@ public class NotesApiControllerImpl implements NotesApiController {
         AllNotes allNotes = new AllNotes();
         allNotes.setNotes(notes);
 
+        log.info("Get all notes: {}", allNotes);
         return new ResponseEntity<>(allNotes, HttpStatus.OK);
     }
 
@@ -82,6 +85,7 @@ public class NotesApiControllerImpl implements NotesApiController {
             @Valid @RequestParam(value = "noteId", required = true) Integer noteId) {
         noteService.delete(noteId);
 
+        log.info("Delete note by id: {}", noteId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -97,6 +101,7 @@ public class NotesApiControllerImpl implements NotesApiController {
         note.dateUpdate(OffsetDateTime.now());
 
         noteService.update(noteId, note);
+        log.info("Update note by id: {} \n Updated note: {}", noteId, note);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

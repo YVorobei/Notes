@@ -53,4 +53,10 @@ public class DbNoteServiceImpl implements NoteService {
 
         entityManager.merge(theNote);
     }
+
+    public Note getLastNote() {
+        TypedQuery<Note> theQuery = entityManager.createQuery("from Note order by id desc", Note.class);
+        theQuery.setMaxResults(1);
+        return theQuery.getSingleResult();
+    }
 }
