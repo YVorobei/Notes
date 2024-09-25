@@ -1,7 +1,6 @@
 package org.notes.service;
 
 import org.notes.dto.Note;
-
 import java.util.List;
 
 public interface NoteService {

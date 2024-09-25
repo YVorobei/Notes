@@ -1,8 +1,7 @@
 package org.notes.service;
 
-import org.notes.dto.Note;
 import org.springframework.stereotype.Repository;
-
+import org.notes.dto.Note;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.util.List;

@@ -1,25 +1,22 @@
 package org.notes.dto;
 
-import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import java.time.OffsetDateTime;
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.Valid;
-
-import io.swagger.v3.oas.annotations.media.Schema;
-
-
-import javax.annotation.Generated;
+import java.time.OffsetDateTime;
+import java.util.Objects;
 
 /**
- * NoteResponseById
+ * Note
  */
+
 @Entity
 @Table(name = "notes")
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-08-26T20:58:07.952931800+02:00[Europe/Warsaw]")
@@ -56,8 +53,8 @@ public class Note {
   /**
    * Get id
    * @return id
-  */
-  
+   */
+
   @Schema(name = "id", example = "777", required = false)
   public Integer getId() {
     return id;
@@ -75,8 +72,8 @@ public class Note {
   /**
    * Get title
    * @return title
-  */
-  
+   */
+
   @Schema(name = "title", example = "TestNoteTitle", required = false)
   public String getTitle() {
     return title;
@@ -94,8 +91,8 @@ public class Note {
   /**
    * Get message
    * @return message
-  */
-  
+   */
+
   @Schema(name = "message", example = "test note description", required = false)
   public String getMessage() {
     return message;
@@ -113,8 +110,8 @@ public class Note {
   /**
    * Get dateCreation
    * @return dateCreation
-  */
-  @Valid 
+   */
+  @Valid
   @Schema(name = "date_creation", required = false)
   public OffsetDateTime getDateCreation() {
     return dateCreation;
@@ -132,8 +129,8 @@ public class Note {
   /**
    * Get dateUpdate
    * @return dateUpdate
-  */
-  @Valid 
+   */
+  @Valid
   @Schema(name = "date_update", required = false)
   public OffsetDateTime getDateUpdate() {
     return dateUpdate;
@@ -153,10 +150,10 @@ public class Note {
     }
     Note note = (Note) o;
     return Objects.equals(this.id, note.id) &&
-        Objects.equals(this.title, note.title) &&
-        Objects.equals(this.message, note.message) &&
-        Objects.equals(this.dateCreation, note.dateCreation) &&
-        Objects.equals(this.dateUpdate, note.dateUpdate);
+            Objects.equals(this.title, note.title) &&
+            Objects.equals(this.message, note.message) &&
+            Objects.equals(this.dateCreation, note.dateCreation) &&
+            Objects.equals(this.dateUpdate, note.dateUpdate);
   }
 
   @Override

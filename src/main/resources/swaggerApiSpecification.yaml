@@ -9,7 +9,7 @@ info:
   description: The API Notes service
 paths:
 
-  /notes/create:
+  /notes:
     post:
       tags:
         - Create Note
@@ -27,42 +27,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/Note'
 
-  /notes/search:
-    get:
-      tags:
-      - Get note by id
-      description: get note by id
-      operationId: getById
-      parameters:
-        - in: query
-          name: noteId
-          description: note id
-          schema:
-            type: integer
-            format: int32
-      responses:
-        '200':
-          description: response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Note'
-
-  /notes/getall:
-    get:
-      tags:
-        - Get All Notes
-      description: get all note
-      operationId: getNotes
-      responses:
-        '200':
-          description: response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AllNotes'
-
-  /notes/update:
     put:
       tags:
         - Update Note
@@ -87,14 +51,48 @@ paths:
             schema:
               $ref: '#/components/schemas/NoteRegistrationInfo'
 
-  /notes/delete:
+    get:
+      tags:
+        - Get All Notes
+      description: get all note
+      operationId: getNotes
+      responses:
+        '200':
+          description: response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AllNotes'
+
+  /notes/{noteId}:
     delete:
       tags:
         - Delete Note
       operationId: deleteNote
       parameters:
-        - in: query
+        - in: path
           name: noteId
+          required: true
+          description: note id
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Note'
+    get:
+      tags:
+        - Get note by id
+      description: get note by id
+      operationId: getById
+      parameters:
+        - in: path
+          name: noteId
+          required: true
           description: note id
           schema:
             type: integer

@@ -1,52 +1,44 @@
 package org.notes.dto;
 
-import java.net.URI;
-import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.time.OffsetDateTime;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
-
-import java.util.*;
 import javax.annotation.Generated;
+import java.util.Objects;
 
 /**
- * NoteRegistrationInfo
+ * ModelApiResponse
  */
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-09-23T22:59:08.315218900+02:00[Europe/Warsaw]")
-public class NoteRegistrationInfo   {
+public class ModelApiResponse   {
 
-  @JsonProperty("title")
-  private String title;
+  @JsonProperty("code")
+  private Integer code;
 
   @JsonProperty("message")
   private String message;
 
-  public NoteRegistrationInfo title(String title) {
-    this.title = title;
+  public ModelApiResponse code(Integer code) {
+    this.code = code;
     return this;
   }
 
   /**
-   * Get title
-   * @return title
+   * Get code
+   * @return code
   */
   
-  @Schema(name = "title", example = "TestNoteTitle", required = false)
-  public String getTitle() {
-    return title;
+  @Schema(name = "code", required = false)
+  public Integer getCode() {
+    return code;
   }
 
-  public void setTitle(String title) {
-    this.title = title;
+  public void setCode(Integer code) {
+    this.code = code;
   }
 
-  public NoteRegistrationInfo message(String message) {
+  public ModelApiResponse message(String message) {
     this.message = message;
     return this;
   }
@@ -56,7 +48,7 @@ public class NoteRegistrationInfo   {
    * @return message
   */
   
-  @Schema(name = "message", example = "test note description", required = false)
+  @Schema(name = "message", example = "everything is ok", required = false)
   public String getMessage() {
     return message;
   }
@@ -73,21 +65,21 @@ public class NoteRegistrationInfo   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    NoteRegistrationInfo noteRegistrationInfo = (NoteRegistrationInfo) o;
-    return Objects.equals(this.title, noteRegistrationInfo.title) &&
-        Objects.equals(this.message, noteRegistrationInfo.message);
+    ModelApiResponse _apiResponse = (ModelApiResponse) o;
+    return Objects.equals(this.code, _apiResponse.code) &&
+        Objects.equals(this.message, _apiResponse.message);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(title, message);
+    return Objects.hash(code, message);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class NoteRegistrationInfo {\n");
-    sb.append("    title: ").append(toIndentedString(title)).append("\n");
+    sb.append("class ModelApiResponse {\n");
+    sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("}");
     return sb.toString();
