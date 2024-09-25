@@ -5,40 +5,43 @@
  */
 package org.notes.controller;
 
+import org.notes.dto.AllNotes;
+import org.notes.dto.Note;
+import org.notes.dto.NoteRegistrationInfo;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.notes.dto.NoteRegistrationInfo;
-import org.notes.dto.Note;
-import org.notes.dto.AllNotes;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.NativeWebRequest;
+import org.springframework.web.multipart.MultipartFile;
 
-import javax.annotation.Generated;
 import javax.validation.Valid;
+import javax.validation.constraints.*;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-08-26T20:58:07.952931800+02:00[Europe/Warsaw]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-09-25T22:37:00.927143900+02:00[Europe/Warsaw]")
 @Validated
 @Tag(name = "notes", description = "the notes API")
-public interface NotesApiController {
+public interface NotesApi {
 
     default Optional<NativeWebRequest> getRequest() {
         return Optional.empty();
     }
 
     /**
-     * POST /notes/create
+     * POST /notes
      *
      * @param noteRegistrationInfo  (optional)
      * @return response (status code 200)
@@ -52,7 +55,7 @@ public interface NotesApiController {
     )
     @RequestMapping(
         method = RequestMethod.POST,
-        value = "/notes/create",
+        value = "/notes",
         produces = { "application/json" },
         consumes = { "application/json" }
     )
@@ -74,9 +77,9 @@ public interface NotesApiController {
 
 
     /**
-     * DELETE /notes/delete
+     * DELETE /notes/{noteId}
      *
-     * @param noteId note id (optional)
+     * @param noteId note id (required)
      * @return response (status code 200)
      */
     @Operation(
@@ -88,11 +91,11 @@ public interface NotesApiController {
     )
     @RequestMapping(
         method = RequestMethod.DELETE,
-        value = "/notes/delete",
+        value = "/notes/{noteId}",
         produces = { "application/json" }
     )
     default ResponseEntity<Note> deleteNote(
-        @Parameter(name = "noteId", description = "note id", schema = @Schema(description = "")) @Valid @RequestParam(value = "noteId", required = false) Integer noteId
+        @Parameter(name = "noteId", description = "note id", required = true, schema = @Schema(description = "")) @PathVariable("noteId") Integer noteId
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
@@ -109,10 +112,10 @@ public interface NotesApiController {
 
 
     /**
-     * GET /notes/search
+     * GET /notes/{noteId}
      * get note by id
      *
-     * @param noteId note id (optional)
+     * @param noteId note id (required)
      * @return response (status code 200)
      */
     @Operation(
@@ -124,11 +127,11 @@ public interface NotesApiController {
     )
     @RequestMapping(
         method = RequestMethod.GET,
-        value = "/notes/search",
+        value = "/notes/{noteId}",
         produces = { "application/json" }
     )
     default ResponseEntity<Note> getById(
-        @Parameter(name = "noteId", description = "note id", schema = @Schema(description = "")) @Valid @RequestParam(value = "noteId", required = false) Integer noteId
+        @Parameter(name = "noteId", description = "note id", required = true, schema = @Schema(description = "")) @PathVariable("noteId") Integer noteId
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
@@ -145,7 +148,7 @@ public interface NotesApiController {
 
 
     /**
-     * GET /notes/getall
+     * GET /notes
      * get all note
      *
      * @return response (status code 200)
@@ -159,7 +162,7 @@ public interface NotesApiController {
     )
     @RequestMapping(
         method = RequestMethod.GET,
-        value = "/notes/getall",
+        value = "/notes",
         produces = { "application/json" }
     )
     default ResponseEntity<AllNotes> getNotes(
@@ -180,7 +183,7 @@ public interface NotesApiController {
 
 
     /**
-     * PUT /notes/update
+     * PUT /notes
      *
      * @param noteId note id (optional)
      * @param noteRegistrationInfo  (optional)
@@ -195,7 +198,7 @@ public interface NotesApiController {
     )
     @RequestMapping(
         method = RequestMethod.PUT,
-        value = "/notes/update",
+        value = "/notes",
         produces = { "application/json" },
         consumes = { "application/json" }
     )

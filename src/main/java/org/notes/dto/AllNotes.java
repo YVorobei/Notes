@@ -1,23 +1,28 @@
 package org.notes.dto;
 
+import java.net.URI;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
+import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.ArrayList;
 import java.util.List;
+import org.notes.dto.Note;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.time.OffsetDateTime;
 import javax.validation.Valid;
-
+import javax.validation.constraints.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
+import java.util.*;
 import javax.annotation.Generated;
 
 /**
- * NotesResponse
+ * AllNotes
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-08-26T20:58:07.952931800+02:00[Europe/Warsaw]")
-public class AllNotes {
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-09-23T22:59:08.315218900+02:00[Europe/Warsaw]")
+public class AllNotes   {
 
   @JsonProperty("notes")
   @Valid
@@ -70,7 +75,7 @@ public class AllNotes {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class NotesResponse {\n");
+    sb.append("class AllNotes {\n");
     sb.append("    notes: ").append(toIndentedString(notes)).append("\n");
     sb.append("}");
     return sb.toString();

@@ -9,15 +9,16 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
-import org.notes.dto.NoteRegistrationInfo;
-import org.notes.dto.Note;
 import org.notes.dto.AllNotes;
+import org.notes.dto.Note;
+import org.notes.dto.NoteRegistrationInfo;
 import org.notes.service.NoteService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,7 +33,7 @@ import java.time.OffsetDateTime;
 @Tag(name = "notes", description = "the notes API")
 @Controller
 @RequestMapping("${openapi.user.base-path:/api}")
-public class NotesApiControllerImpl implements NotesApiController {
+public class NotesApiControllerImpl implements NotesApi {
 
     private NoteService noteService;
 
@@ -41,10 +42,7 @@ public class NotesApiControllerImpl implements NotesApiController {
     }
 
     @Override
-    public ResponseEntity<Note> getById(
-            @Parameter(name = "noteId", description = "note id", schema = @Schema(description = ""))
-            @Valid @RequestParam(value = "noteId", required = false) Integer noteId) {
-
+    public ResponseEntity<Note> getById(@PathVariable("noteId") Integer noteId) {
         var note = noteService.findById(noteId);
 
         log.info("Get by note id: {} \n Response: {}", noteId, note);
@@ -54,8 +52,8 @@ public class NotesApiControllerImpl implements NotesApiController {
     @Override
     public ResponseEntity<Note> createNote(
             @Parameter(name = "NoteRegistrationInfo", description = "", schema = @Schema(description = ""))
-            @Valid @RequestBody(required = false) NoteRegistrationInfo noteRegistrationInfo) {
-
+            @Valid @RequestBody(required = false) NoteRegistrationInfo noteRegistrationInfo)
+    {
         OffsetDateTime currentDate = OffsetDateTime.now();
 
         Note note = new Note();
@@ -81,8 +79,8 @@ public class NotesApiControllerImpl implements NotesApiController {
 
     @Override
     public ResponseEntity<Note> deleteNote(
-            @Parameter(name = "noteId", description = "note id")
-            @Valid @RequestParam(value = "noteId", required = true) Integer noteId) {
+            @Parameter(name = "noteId", description = "note id", required = true, schema = @Schema(description = "")) @PathVariable("noteId") Integer noteId
+    ) {
         noteService.delete(noteId);
 
         log.info("Delete note by id: {}", noteId);
@@ -91,9 +89,9 @@ public class NotesApiControllerImpl implements NotesApiController {
 
     @Override
     public ResponseEntity<Note> updateNote(
-            @Parameter(name = "noteId") @Valid @RequestParam(value = "noteId", required = true) Integer noteId,
-            @Parameter(name = "NoteRegistrationInfo") @Valid @RequestBody NoteRegistrationInfo noteRegistrationInfo) {
-
+            @Parameter(name = "noteId", description = "note id", schema = @Schema(description = "")) @Valid @RequestParam(value = "noteId", required = false) Integer noteId,
+            @Parameter(name = "NoteRegistrationInfo", description = "", schema = @Schema(description = "")) @Valid @RequestBody(required = false) NoteRegistrationInfo noteRegistrationInfo
+    ) {
         Note note = new Note();
         note.setId(noteId);
         note.title(noteRegistrationInfo.getTitle());

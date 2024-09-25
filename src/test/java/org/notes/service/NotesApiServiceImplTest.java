@@ -4,15 +4,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.notes.controller.NotesApiControllerImpl;
-import org.notes.dto.NoteRegistrationInfo;
-import org.notes.dto.Note;
 import org.notes.dto.AllNotes;
+import org.notes.dto.NoteRegistrationInfo;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.time.OffsetDateTime;
 import java.util.Collections;
-
+import org.notes.dto.Note;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.anyInt;
