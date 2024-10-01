@@ -3,7 +3,7 @@ package org.notes.service;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-import org.notes.controller.NotesApiControllerImpl;
+import org.notes.controller.NotesApiController;
 import org.notes.dto.AllNotes;
 import org.notes.dto.NoteRegistrationInfo;
 import org.springframework.http.HttpStatus;
@@ -25,12 +25,12 @@ class NotesApiServiceImplTest {
 
     @Mock
     private NoteService noteService;
-    private NotesApiControllerImpl notesApiController;
+    private NotesApiController notesApiController;
 
     @BeforeEach
     void setUp() {
         noteService = mock(NoteService.class);
-        notesApiController = new NotesApiControllerImpl(noteService);
+        notesApiController = new NotesApiController(noteService);
     }
 
     @Test

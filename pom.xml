@@ -97,7 +97,6 @@
                                 ${project.basedir}/src/main/resources/swaggerApiSpecification.yaml
                             </inputSpec>
                             <generatorName>spring</generatorName>
-                            <output>${project.basedir}</output> <!-- Output to project root -->
                             <configOptions>
                                 <interfaceOnly>true</interfaceOnly> <!-- Generate only interfaces, if needed -->
                             </configOptions>

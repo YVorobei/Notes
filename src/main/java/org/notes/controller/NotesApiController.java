@@ -33,11 +33,11 @@ import java.time.OffsetDateTime;
 @Tag(name = "notes", description = "the notes API")
 @Controller
 @RequestMapping("${openapi.user.base-path:/api}")
-public class NotesApiControllerImpl implements NotesApi {
+public class NotesApiController implements NotesApi {
 
     private NoteService noteService;
 
-    public NotesApiControllerImpl(@Qualifier("noteServiceImpl") NoteService noteService) {
+    public NotesApiController(@Qualifier("noteServiceImpl") NoteService noteService) {
         this.noteService = noteService;
     }
 
