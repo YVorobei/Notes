@@ -1,49 +1,50 @@
 package org.notes.service;
 
+import org.notes.model.NoteDb;
 import org.springframework.stereotype.Repository;
-import org.notes.dto.Note;
+
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
-public class DbNoteServiceImpl implements NoteService {
+public class NoteDbService {
 
     private final EntityManager entityManager;
 
-    public DbNoteServiceImpl(EntityManager entityManager) {
+    public NoteDbService(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
-    @Override
-    public void save(Note theNote) {
+    //@Override
+    public void save(NoteDb theNote) {
         entityManager.persist(theNote);
     }
 
-    @Override
-    public Note findById(Integer id) {
-        return entityManager.find(Note.class, id);
+    //@Override
+    public NoteDb findById(Integer id) {
+        return entityManager.find(NoteDb.class, id);
     }
 
-    @Override
-    public List<Note> findAll() {
-        TypedQuery<Note> theQuery = entityManager.createQuery("from Note", Note.class);
+    //@Override
+    public List<NoteDb> findAll() {
+        TypedQuery<NoteDb> theQuery = entityManager.createQuery("from NoteDb", NoteDb.class);
 
         return theQuery.getResultList();
     }
 
-    @Override
+    //@Override
     public void delete(Integer id) {
-        var theNote = entityManager.find(Note.class, id);
+        var theNote = entityManager.find(NoteDb.class, id);
         if (theNote == null) {
             throw new RuntimeException("Note with id " + id + " not found");
         }
         entityManager.remove(theNote);
     }
 
-    @Override
-    public void update(Integer id, Note theNote) {
-        var targetNote = entityManager.find(Note.class, id);
+    //@Override
+    public void update(Integer id, NoteDb theNote) {
+        var targetNote = entityManager.find(NoteDb.class, id);
         if (targetNote == null) {
             throw new RuntimeException("Note with id " + id + " not found");
         }
@@ -53,8 +54,8 @@ public class DbNoteServiceImpl implements NoteService {
         entityManager.merge(theNote);
     }
 
-    public Note getLastNote() {
-        TypedQuery<Note> theQuery = entityManager.createQuery("from Note order by id desc", Note.class);
+    public NoteDb getLastNote() {
+        TypedQuery<NoteDb> theQuery = entityManager.createQuery("from NoteDb order by id desc", NoteDb.class);
         theQuery.setMaxResults(1);
         return theQuery.getSingleResult();
     }
