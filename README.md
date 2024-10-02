@@ -103,7 +103,7 @@
 <h4 id="_create_note">Create note</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="http">POST /notes/create</code></pre>
+<pre class="CodeRay highlight"><code data-lang="http">POST /notes</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -137,7 +137,7 @@
 <h4 id="_search_note_by_id">Search note by id</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="http">GET /notes/searsch/{id}</code></pre>
+<pre class="CodeRay highlight"><code data-lang="http">GET /notes/{id}</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -176,7 +176,7 @@
 <h4 id="_get_all_notes">Get all notes</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="http">GET /notes/getall</code></pre>
+<pre class="CodeRay highlight"><code data-lang="http">GET /notes</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -227,7 +227,7 @@
 <h4 id="_update_note">Update note</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="http">PUT /notes/update/{id}</code></pre>
+<pre class="CodeRay highlight"><code data-lang="http">PUT /notes/{id}</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -279,7 +279,7 @@
 <h4 id="_delete_note_by_id">Delete note by id</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="http">DELETE /notes/delete/{id}</code></pre>
+<pre class="CodeRay highlight"><code data-lang="http">DELETE /notes/{id}</code></pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">

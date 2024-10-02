@@ -4,11 +4,9 @@
 actor "Web Client" as CL
 participant "Notes Service" as NS
 Database  "BD"
-queue "Kafka"
 
 CL -> NS: get all notes
 NS -> BD: get all notes
-BD -> Kafka: track event
 NS <- BD: list notes
 CL <- NS: list notes
 @enduml
