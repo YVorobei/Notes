@@ -61,7 +61,7 @@
 <hr>
 <div class="imageblock">
 <div class="content">
-<img src="https://raw.githubusercontent.com/YVorobei/Notes/1a03ede9aea9582dbc0aa230190665337925091b/note-service-doc/readme/search-notes.svg" alt="search notes" width="428" height="343">
+<img src="https://raw.githubusercontent.com/YVorobei/Notes/1a03ede9aea9582dbc0aa230190665337925091b/note-service-doc/readme/search-notes.svg" alt="search notes" height="343">
 </div>
 </div>
 </div>
@@ -70,7 +70,7 @@
 <hr>
 <div class="imageblock">
 <div class="content">
-<img src="https://raw.githubusercontent.com/YVorobei/Notes/1a03ede9aea9582dbc0aa230190665337925091b/note-service-doc/readme/get-all-notes.svg" width="357" height="343">
+<img src="https://raw.githubusercontent.com/YVorobei/Notes/1a03ede9aea9582dbc0aa230190665337925091b/note-service-doc/readme/get-all-notes.svg" height="343">
 </div>
 </div>
 </div>
