@@ -48,7 +48,7 @@ include::../diagrams/notes-delete-item.puml[]
 ==== Create note
 [source,http]
 ----
-POST /notes
+POST /api/notes
 ----
 [source,json]
 ----
@@ -67,7 +67,7 @@ POST /notes
 ==== Search note by id
 [source,http]
 ----
-GET /notes/{id}
+GET /api/notes/{id}
 ----
 [source,json]
 [options="header"]
@@ -92,7 +92,7 @@ GET /notes/{id}
 ==== Get all notes
 [source,http]
 ----
-GET /notes
+GET /api/notes
 ----
 [source,json]
 
@@ -128,7 +128,7 @@ Response body:
 ==== Update note
 [source,http]
 ----
-PUT /notes/{id}
+PUT /api/notes/{id}
 ----
 [source,json]
 ----
@@ -148,7 +148,7 @@ PUT /notes/{id}
 ==== Delete note by id
 [source,http]
 ----
-DELETE /notes/{id}
+DELETE /api/notes/{id}
 ----
 
 |===
