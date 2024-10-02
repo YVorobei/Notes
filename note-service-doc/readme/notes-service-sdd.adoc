@@ -60,7 +60,8 @@ POST /notes
 [options="header"]
 |===
 | Response Code | Description
-| 200           | Successful response.
+| 200           | Successful response
+| 400           | Bad request
 |===
 
 ==== Search note by id
@@ -84,8 +85,8 @@ GET /notes/{id}
 
 |===
 | Response Code | Description
-| 200           | Successful response, return note.
-| 404           | Unable to find note.
+| 200           | Successful response, return note
+| 404           | Unable to find note
 |===
 
 ==== Get all notes
@@ -139,8 +140,9 @@ PUT /notes/{id}
 [options="header"]
 |===
 | Response Code | Description
-| 200           | Successful response.
-| 404           | Unable to find note.
+| 200           | Successful response
+| 404           | Unable to find note
+| 400           | Bad request
 |===
 
 ==== Delete note by id
@@ -152,5 +154,6 @@ DELETE /notes/{id}
 |===
 | Response Code | Description
 | 200           | Successful response
+| 404           | Unable to find note
 |===
 

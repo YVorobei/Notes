@@ -128,7 +128,11 @@
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Successful response.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Successful response</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">400</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bad request</p></td>
 </tr>
 </tbody>
 </table>
@@ -163,11 +167,11 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Successful response, return note.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Successful response, return note</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">404</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Unable to find note.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unable to find note</p></td>
 </tr>
 </tbody>
 </table>
@@ -193,7 +197,7 @@
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Successful response, list of notes returned.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Successful response, list of notes returned</p></td>
 </tr>
 </tbody>
 </table>
@@ -252,11 +256,15 @@
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Successful response.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Successful response</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">404</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Unable to find note.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unable to find note</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">400</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bad request</p></td>
 </tr>
 </tbody>
 </table>
@@ -295,6 +303,10 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Successful response</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">404</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unable to find note</p></td>
 </tr>
 </tbody>
 </table>
