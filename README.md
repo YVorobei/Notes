@@ -106,6 +106,7 @@
 <pre class="CodeRay highlight"><code data-lang="http">POST /api/notes</code></pre>
 </div>
 </div>
+Request body:
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="json">    {
@@ -144,6 +145,7 @@
 <pre class="CodeRay highlight"><code data-lang="http">GET /api/notes/{id}</code></pre>
 </div>
 </div>
+Response body:
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="json">{
@@ -234,6 +236,7 @@
 <pre class="CodeRay highlight"><code data-lang="http">PUT /api/notes/{id}</code></pre>
 </div>
 </div>
+Request body:
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="json">    {

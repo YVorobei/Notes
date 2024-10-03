@@ -64,7 +64,7 @@ public class NotesApiController implements NotesApi {
 
         noteService.save(note);
         log.info("Create note: {}", note);
-        return new ResponseEntity<>(note, HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @Override

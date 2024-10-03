@@ -1,51 +1,54 @@
 package org.notes.service;
 
 import org.notes.dto.Note;
+import org.notes.mapper.NoteMapper;
+import org.notes.repository.NoteRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class NoteServiceImpl implements NoteService {
 
-    private final DbNoteServiceImpl dbNoteService;
+    private final NoteRepository noteRepository;
 
-    public NoteServiceImpl(DbNoteServiceImpl dbNoteService) {
-        this.dbNoteService = dbNoteService;
+    public NoteServiceImpl(NoteRepository NoteRepository) {
+        this.noteRepository = NoteRepository;
     }
 
     @Transactional
     @Override
     public void save(Note theNote) {
-        var newestNoteId = getLastNoteId() + 1;
-        theNote.setId(newestNoteId);
-        dbNoteService.save(theNote);
+        noteRepository.save(NoteMapper.INSTANCE.toNoteEntity(theNote));
     }
 
     @Override
     public Note findById(Integer id) {
-        return dbNoteService.findById(id);
+
+        return NoteMapper.INSTANCE.toNote(noteRepository.findById(id));
     }
 
     @Override
     public List<Note> findAll() {
-        return dbNoteService.findAll();
+        List<Note> notes = new ArrayList<>();
+        var listNoteDb = noteRepository.findAll();
+        listNoteDb.forEach(noteDb -> notes.add(NoteMapper.INSTANCE.toNote(noteDb)));
+
+        return notes;
     }
 
     @Transactional
     @Override
     public void update(Integer noteId, Note theNote) {
-        dbNoteService.update(noteId, theNote);
+        noteRepository.update(noteId, NoteMapper.INSTANCE.toNoteEntity(theNote));
     }
 
     @Transactional
     @Override
     public void delete(Integer id) {
-        dbNoteService.delete(id);
+        noteRepository.delete(id);
     }
 
-    private Integer getLastNoteId() {
-        return dbNoteService.getLastNote().getId();
-    }
 }
